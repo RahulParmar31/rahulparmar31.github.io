@@ -67,6 +67,79 @@
         "knowsAbout": ["WordPress Development", "Shopify Development", "WooCommerce", "PHP", "Shopify Liquid"]
         }
     </script>
+    <!-- Structured Data: FAQ Schema -->
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+            "@type": "Question",
+            "name": "Do you build custom WordPress themes from scratch?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I build fully custom WordPress themes coded from scratch using PHP, ACF Pro, and custom post types, rather than relying on pre-built templates, so the site matches your exact design and business logic."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Can you customize an existing WooCommerce store?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I work with WooCommerce template overrides, dynamic pricing rules, custom checkout flows, and My Account page customization to tailor an existing store to specific business requirements."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Do you develop custom WordPress plugins?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I develop custom WordPress plugins for specific functionality, including REST API endpoints, custom post types and taxonomies, and integrations with third-party services."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Which page builders do you work with in WordPress?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "I primarily work with Elementor and Oxygen Builder, along with native Gutenberg blocks, depending on the client's preference and the project's performance requirements."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Can you convert a Figma design into a Shopify store?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I convert Figma designs into fully responsive Shopify themes using custom Liquid sections and templates, matching the design pixel-for-pixel while keeping the code maintainable through the Shopify Theme Editor."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Do you customize existing Shopify themes like Dawn?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I customize premium and free Shopify themes, including Dawn and Horizon, by building custom sections, adjusting Liquid templates, and configuring metafields to support specific merchandising needs."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Can you integrate third-party apps into my Shopify store?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I integrate third-party Shopify apps and services, including pre-order tools, wishlist apps, shipping carriers, and Shopify Forms, and can build custom functionality like customer-tag-based pricing when an app doesn't cover a specific need."
+            }
+            },
+            {
+            "@type": "Question",
+            "name": "Do you offer WordPress and Shopify site performance optimization?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. I optimize Core Web Vitals (LCP, FCP, CLS) through image lazy loading, CSS and JS minification, and CDN setup, for both WordPress and Shopify storefronts."
+            }
+            }
+        ]
+        }
+    </script>
 </head>
 
 <body>
@@ -1193,7 +1266,8 @@
                         To enable direct email notifications, update the form action below to point to your endpoint:
                         Example: action="https://formspree.io/f/YOUR_FORM_ID" or "https://api.web3forms.com/submit"
                     -->
-                    <form id="portfolioContactForm" action="#" method="POST" novalidate>
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="5cc1c047-d1d8-4fa4-a0ea-50e66e1126d7">
                         <!-- Interactive Success State Alert -->
                         <div class="form-success-alert" id="formSuccessAlert">
                             <i class="fa-solid fa-circle-check"></i> Thank you! Your message has been sent successfully.
@@ -1202,28 +1276,26 @@
 
                         <div class="form-group">
                             <label for="contactName">Full Name *</label>
-                            <input type="text" id="contactName" class="form-control" placeholder="e.g. John Doe">
-                            <div class="form-error-msg" id="nameError">Please enter your name.</div>
+                            <input type="text" id="contactName" class="form-control" placeholder="Enter Your Full Name"
+                                required>
                         </div>
 
                         <div class="form-group">
                             <label for="contactEmail">Email Address *</label>
                             <input type="email" id="contactEmail" class="form-control"
-                                placeholder="e.g. john@example.com">
-                            <div class="form-error-msg" id="emailError">Please enter a valid email address.</div>
+                                placeholder="Enter Your Email Address" required>
                         </div>
 
                         <div class="form-group">
                             <label for="contactPhone">Phone Number (Optional)</label>
                             <input type="tel" id="contactPhone" class="form-control"
-                                placeholder="e.g. +1 (555) 000-0000">
+                                placeholder="Enter Your Phone Number" required>
                         </div>
 
                         <div class="form-group">
                             <label for="contactMessage">Project Message *</label>
-                            <textarea id="contactMessage" class="form-control"
-                                placeholder="Describe your project, timeline, or scope requirements..."></textarea>
-                            <div class="form-error-msg" id="messageError">Please enter your message.</div>
+                            <textarea id="contactMessage" class="form-control" placeholder="Enter Your Project Message"
+                                required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
