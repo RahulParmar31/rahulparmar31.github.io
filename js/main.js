@@ -205,70 +205,106 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     // 7. CONTACT FORM VALIDATION & INTERACTIVE SUBMISSION
     // ----------------------------------------------------------------------
-    const contactForm = document.getElementById('portfolioContactForm');
-    const successAlert = document.getElementById('formSuccessAlert');
+    const form = document.getElementById('portfolioContactForm');
+    const submitBtn = form.querySelector('button[type="submit"]');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            let isValid = true;
-            const nameInput = document.getElementById('contactName');
-            const emailInput = document.getElementById('contactEmail');
-            const messageInput = document.getElementById('contactMessage');
+        const formData = new FormData(form);
+        formData.append("access_key", "b4271408-f0fa-40be-a2d9-89845839361a");
 
-            const nameError = document.getElementById('nameError');
-            const emailError = document.getElementById('emailError');
-            const messageError = document.getElementById('messageError');
+        const originalText = submitBtn.textContent;
 
-            // Reset errors
-            nameError.style.display = 'none';
-            emailError.style.display = 'none';
-            messageError.style.display = 'none';
+        submitBtn.textContent = "Sending...";
+        submitBtn.disabled = true;
 
-            // Validate Name
-            if (!nameInput.value.trim()) {
-                nameError.textContent = 'Please enter your full name.';
-                nameError.style.display = 'block';
-                isValid = false;
+        try {
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Success! Your message has been sent.");
+                form.reset();
+            } else {
+                alert("Error: " + data.message);
             }
 
-            // Validate Email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailInput.value.trim()) {
-                emailError.textContent = 'Please enter your email address.';
-                emailError.style.display = 'block';
-                isValid = false;
-            } else if (!emailRegex.test(emailInput.value.trim())) {
-                emailError.textContent = 'Please enter a valid email address.';
-                emailError.style.display = 'block';
-                isValid = false;
-            }
+        } catch (error) {
+            alert("Something went wrong. Please try again.");
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+    // const contactForm = document.getElementById('portfolioContactForm');
+    // const successAlert = document.getElementById('formSuccessAlert');
 
-            // Validate Message
-            if (!messageInput.value.trim()) {
-                messageError.textContent = 'Please enter your project details or message.';
-                messageError.style.display = 'block';
-                isValid = false;
-            }
+    // if (contactForm) {
+    //     contactForm.addEventListener('submit', (e) => {
+    //         e.preventDefault();
 
-            if (isValid) {
-                // Show interactive success alert
-                if (successAlert) {
-                    successAlert.style.display = 'block';
-                    successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }
+    //         let isValid = true;
+    //         const nameInput = document.getElementById('contactName');
+    //         const emailInput = document.getElementById('contactEmail');
+    //         const messageInput = document.getElementById('contactMessage');
 
-                // Reset form
-                contactForm.reset();
+    //         const nameError = document.getElementById('nameError');
+    //         const emailError = document.getElementById('emailError');
+    //         const messageError = document.getElementById('messageError');
 
-                // Hide success message after 6 seconds
-                setTimeout(() => {
-                    if (successAlert) {
-                        successAlert.style.display = 'none';
-                    }
-                }, 6000);
-            }
-        });
-    }
+    //         // Reset errors
+    //         nameError.style.display = 'none';
+    //         emailError.style.display = 'none';
+    //         messageError.style.display = 'none';
+
+    //         // Validate Name
+    //         if (!nameInput.value.trim()) {
+    //             nameError.textContent = 'Please enter your full name.';
+    //             nameError.style.display = 'block';
+    //             isValid = false;
+    //         }
+
+    //         // Validate Email
+    //         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //         if (!emailInput.value.trim()) {
+    //             emailError.textContent = 'Please enter your email address.';
+    //             emailError.style.display = 'block';
+    //             isValid = false;
+    //         } else if (!emailRegex.test(emailInput.value.trim())) {
+    //             emailError.textContent = 'Please enter a valid email address.';
+    //             emailError.style.display = 'block';
+    //             isValid = false;
+    //         }
+
+    //         // Validate Message
+    //         if (!messageInput.value.trim()) {
+    //             messageError.textContent = 'Please enter your project details or message.';
+    //             messageError.style.display = 'block';
+    //             isValid = false;
+    //         }
+
+    //         if (isValid) {
+    //             // Show interactive success alert
+    //             if (successAlert) {
+    //                 successAlert.style.display = 'block';
+    //                 successAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    //             }
+
+    //             // Reset form
+    //             contactForm.reset();
+
+    //             // Hide success message after 6 seconds
+    //             setTimeout(() => {
+    //                 if (successAlert) {
+    //                     successAlert.style.display = 'none';
+    //                 }
+    //             }, 6000);
+    //         }
+    //     });
+    // }
 });
