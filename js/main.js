@@ -212,8 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
 
         const formData = new FormData(form);
-        formData.append("access_key", "b4271408-f0fa-40be-a2d9-89845839361a");
-
         const originalText = submitBtn.textContent;
 
         submitBtn.textContent = "Sending...";
@@ -228,8 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (response.ok) {
-                alert("Success! Your message has been sent.");
+                document.getElementById('formSuccessAlert').style.display = 'block';
                 form.reset();
+                setTimeout(() => {
+                    document.getElementById('formSuccessAlert').style.display = 'none';
+                }, 6000);
             } else {
                 alert("Error: " + data.message);
             }
