@@ -510,7 +510,19 @@ section {
     margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
+}
+
+.hero-subtitle .tech-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    white-space: nowrap;
+}
+
+.hero-subtitle .tech-sep {
+    line-height: 1;
 }
 
 .hero-description {
@@ -1864,5 +1876,13 @@ textarea.form-control {
 
     .section-title {
         font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-subtitle {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25em;
     }
 }
