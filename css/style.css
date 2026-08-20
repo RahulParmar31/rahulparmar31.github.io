@@ -737,7 +737,7 @@ section {
 
 .badge-wp {
     top: -20px;
-    right: -15px;
+    right: 0;
     animation-delay: 0s;
 }
 
