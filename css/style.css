@@ -160,7 +160,7 @@ select {
 
 /* Section Common Styling */
 section {
-    padding: 6rem 0;
+    padding: 3rem 0;
     position: relative;
 }
 
@@ -1719,7 +1719,7 @@ textarea.form-control {
     padding-top: 2rem;
     border-top: 1px solid var(--border-color);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
